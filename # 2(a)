@@ -1,0 +1,19 @@
+a) Aggregate method:
+Consider cost of insertions as n grows:
+- 1st insertion: 1 (no resize)
+- 2nd insertion: 1 + 2 (resize to size 2, copy 1 element)
+- 3rd and 4th insertions: 1 each
+- 5th insertion: 1 + 4 (resize to size 4, copy 4 elements)
+- 6th to 8th insertions: 1 each
+- 9th insertion: 1 + 8 (resize to size 8, copy 8 elements)
+- and so on...
+
+The total cost for n insertions:
+T(n) = n + (1 + 2 + 4 + 8 + ... + n/2)
+Where n is the cost of n simple insertions, and the sum represents the cost of all resizing operations.
+The sum of the resizing costs:
+1 + 2 + 4 + 8 + ... + n/2 < n
+Total cost T(n) < n + n = 2n
+The amortized cost per operation is:
+T(n) / n < 2n / n = 2
+The amortized runtime for inserting n elements is O(1) per insert operation despite occasional expensive resize operations.
