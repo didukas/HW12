@@ -1,0 +1,19 @@
+b) Accounting method:
+Assign a cost of 3 units to each insertion operation.
+For simple operations (no resizing):
+- Actual cost: 1 unit
+- 2 units are saved in the "bank"
+For complex operations (resizing):
+- Actual cost: i units, where i is the current number of elements
+- The saved units from previous operations are used to pay for this cost
+Simple ops have O(3) amortized cost and O(1) actual cost
+Complex ops (at ith index) have O(i) amortized and O(i) actual cost
+Follow the sequence of operations:
+- After 3 simple ops: Bank balance = $6 (3+3+3-1-1-1)
+- After a complex op at index 4: Bank balance = $2 (6-4)
+- After 3 more simple ops: Bank balance = $8 ($2+$6)
+- After a complex op at index 8: Bank balance = $0 (8-8)
+- After 9 simple ops: Bank balance = $18
+- A complex op at index 18 can now be performed
+This pattern continues, always maintaining a non-negative bank balance.
+The accounting method demonstrates that by charging 3 units for each operation: always have enough "saved" to cover the cost of resizing operations; the bank balance never becomes negative; the amortized cost per operation is O(1)
