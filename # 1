@@ -1,0 +1,31 @@
+import ctypes
+
+class DynamicArray:
+    def init(self):
+        self.size = 0
+        self.capacity = 1
+        self.array = self.make_array(self.capacity)
+
+    def len(self):
+        return self.size
+
+    def getitem(self, index):
+        if not 0 <= index < self.size:
+            raise IndexError('Index out of bounds')
+        return self.array[index]
+
+    def append(self, element):
+        if self.size == self.capacity:
+            self._resize(2 * self.capacity)
+        self.array[self.size] = element
+        self.size += 1
+
+    def resize(self, new_capacity):
+        new_array = self.make_array(new_capacity)
+        for i in range(self.size):
+            new_array[i] = self.array[i]
+        self.array = new_array
+        self.capacity = new_capacity
+
+    def make_array(self, new_capacity):
+        return (new_capacity * ctypes.py_object)()
