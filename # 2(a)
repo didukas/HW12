@@ -1,5 +1,5 @@
 a) Aggregate method:
-Consider cost of insertions as n grows:
+Cost of insertions as n grows:
 - 1st insertion: 1 (no resize)
 - 2nd insertion: 1 + 2 (resize to size 2, copy 1 element)
 - 3rd and 4th insertions: 1 each
